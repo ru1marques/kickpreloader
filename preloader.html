@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Preloader Lottie - kickvoidlöop</title>
+<script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js"></script>
+  <style>
+    body {margin:0;background:#00c7cf;overflow:hidden;font-family:sans-serif;}
+    .preloader-wrapper{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:99;transition:transform .9s ease,opacity .6s ease;background:#00c7cf;}
+    body.loaded .preloader-wrapper{transform:translateY(-100%);opacity:0;pointer-events:none;}
+    .site-wrapper{opacity:0;transition:opacity .8s ease;}
+    body.loaded .site-wrapper{opacity:1;}
+  </style>
+</head>
+<body>
+  <div class="preloader-wrapper">
+
+    <dotlottie-wc
+  src="art1.json"
+  autoplay
+  loop
+  style="width:1060px; height:1060px;">
+</dotlottie-wc>
+
+
+  </div>
+
+  <div class="site-wrapper">
+    <h1 style="padding:40px;color:#000;">Website Aqui</h1>
+  </div>
+
+  <script>
+    window.addEventListener('load',()=>{
+      setTimeout(()=>document.body.classList.add('loaded'),4000);
+    });
+  </script>
+</body>
+</html>
