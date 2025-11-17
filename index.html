@@ -3,36 +3,123 @@
 <head>
   <meta charset="UTF-8" />
   <title>Preloader Lottie - kickvoidlöop</title>
-<script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js"></script>
+
+  <!-- Player para .lottie/.json -->
+  <script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js"></script>
+
   <style>
-    body {margin:0;background:#00c7cf;overflow:hidden;font-family:sans-serif;}
-    .preloader-wrapper{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:99;transition:transform .9s ease,opacity .6s ease;background:#00c7cf;}
-    body.loaded .preloader-wrapper{transform:translateY(-100%);opacity:0;pointer-events:none;}
-    .site-wrapper{opacity:0;transition:opacity .8s ease;}
-    body.loaded .site-wrapper{opacity:1;}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffffff;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    /* PRELOADER */
+    .preloader-wrapper {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99;
+
+      background: #00c7cf;
+
+      /* estado inicial */
+      opacity: 1;
+      transform: scale(1);
+
+      transition:
+        opacity 0.8s ease,
+        transform 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    /* Quando desaparece */
+    body.loaded .preloader-wrapper {
+      opacity: 0;
+      transform: scale(1.06); /* ligeiro zoom IN */
+      pointer-events: none;
+    }
+
+    .preloader-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+    }
+
+        /* descrição em baixo */
+    .preloader-text {
+      font-size: 0.8vw;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.1px;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.65);
+      margin-top: -40px;
+ }
+
+     .wrapper-text{
+      width: 60%;
+    }
+
+    /* Conteúdo do site */
+    .site-wrapper {
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+
+   
+
+    body.loaded .site-wrapper {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
+
+  <!-- PRELOADER e tamanhoo -->
   <div class="preloader-wrapper">
+    <div class="preloader-inner">
+      <dotlottie-wc
+        src="art1.json"
+        autoplay
+        loop
+        style="width:860px; height:860px;">
+      </dotlottie-wc>
 
-    <dotlottie-wc
-  src="art1.json"
-  autoplay
-  loop
-  style="width:860px; height:860px;">
-</dotlottie-wc>
+    <div class="wrapper-text">
+      <p class="preloader-text">A group of insanely passionate human beings. Together we form a design studio working with different creative fields.
 
+</p>
+     </div>
 
+    </div>
   </div>
 
+  <!-- WEBSITE -->
   <div class="site-wrapper">
     <h1 style="padding:40px;color:#000;">Website Aqui</h1>
+    <p style="padding:0 40px 40px;color:#333;max-width:480px;">
+abababbabababa    </p>
   </div>
 
   <script>
-    window.addEventListener('load',()=>{
-      setTimeout(()=>document.body.classList.add('loaded'),4000);
+    const PRELOADER_DURATION = 4000;
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.body.classList.add('loaded');
+      }, PRELOADER_DURATION);
     });
   </script>
+
 </body>
 </html>
